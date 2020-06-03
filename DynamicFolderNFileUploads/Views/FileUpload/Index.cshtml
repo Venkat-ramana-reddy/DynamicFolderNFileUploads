@@ -1,0 +1,121 @@
+﻿@model DynamicFolderNFileUploads.Models.PersonFile
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@Html.LabelFor(m => m.Name)
+<br />
+@Html.DropDownListFor(m => m.Name, ViewBag.Names as SelectList, "Select Name")
+<br />
+
+<br />
+<input id="btnData" type="submit" value="Show Data" onclick="location.href='@Url.Action("Helper", "FileUpload")?id='+$('#Name').val()" />
+<br />
+
+<br />
+<input type="submit" value="Show Files" onclick="location.href='@Url.Action("ShowFile", "FileUpload")?id='+$('#Name').val()" />
+<br />
+<br />
+@Html.ActionLink("Create new", "Create")
+<br />
+<br />
+@if (Model != null)
+{
+
+<table border="1">
+    <tr>
+        <th>
+            @Html.LabelFor(m => m.Name)
+        </th>
+        <th>
+            @Html.LabelFor(m => m.AdharCardPDF)
+        </th>
+        <th>
+            @Html.LabelFor(m => m.PanCard)
+        </th>
+        <th>
+            @Html.LabelFor(m => m.VoterCard)
+        </th>
+    </tr>
+
+    <tr id="tableData">
+        <td>
+            @Html.DisplayFor(m => m.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(m => m.AdharCardPDF)
+        </td>
+        <td>
+            @Html.DisplayFor(m => m.PanCard)
+        </td>
+        <td>
+            @Html.DisplayFor(m => m.VoterCard)
+        </td>
+        <td>
+            @Html.DropDownList("EachFile", ViewBag.Files as SelectList, "Select File")
+            <input type="submit" value="Show"
+                   onclick="location.href='@Url.Action("EachFile", "FileUpload")?fileName='+$('#EachFile').val()+'&id='+@Model.FileID" />
+        </td>
+    </tr>
+
+    @*<tr>
+        <td></td>
+        <td>
+            <div>
+                <img src="@Url.Content("~")images/@Model.AdharCardPDF" alt="@Model.Name adhar" width="200" height="120" />
+            </div>
+        </td>
+        <td>
+            <div>
+                <img src="@Url.Content("~")images/@Model.PanCard" alt="@Model.Name PanCard" width="200" height="120" />
+            </div>
+        </td>
+        <td>
+            <div>
+                <img src="@Url.Content("~")images/@Model.VoterCard" alt="@Model.Name VoterCard" width="200" height="120" />
+            </div>
+        </td>
+
+    </tr>*@
+</table>
+
+    if (ViewBag.FilP != null)
+    {
+<div>
+    <img src="@Url.Content("~")images/@ViewBag.FilP" alt="file" width="200" height="120" />
+</div>
+    }
+}
+
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#ShowId').click(
+            function () {
+                var id = $('#Name').val();
+                $.ajax({
+                    url: 'Index',
+                    data: { Id: id },
+                    method: 'get',
+
+                    success: function (data) {
+                        if (data != null) {
+
+                            alert('Success');
+                        }
+                        else {
+                            alert('failed');
+                        }
+                    }
+                })
+            }
+        )
+    });
+
+</script>

@@ -1,0 +1,36 @@
+﻿@model DynamicFolderNFileUploads.Models.PersonFile
+
+<br />
+
+@{
+ ViewBag.Title = "Show File";
+}
+
+@if (Model == null)
+{
+
+    @ViewBag.message
+
+}
+
+else
+{
+
+    <h2>Show File</h2>
+
+    <div>
+        <div>
+            <img src="@Url.Content("~")images/@Model.AdharCardPDF" alt="@Model.Name adhar" width="200" height="120" />
+        </div>
+        <br />
+        <div>
+            <img src="@Url.Content("~")images/@Model.PanCard" alt="@Model.Name PanCard" width="200" height="120" />
+        </div>
+        <br />
+        <div>
+            <img src="@Url.Content("~")images/@Model.VoterCard" alt="@Model.Name VoterCard" width="200" height="120" />
+        </div>
+        <br />
+    </div>
+
+}
