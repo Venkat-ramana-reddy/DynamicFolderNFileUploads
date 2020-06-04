@@ -47,22 +47,41 @@ namespace DynamicFolderNFileUploads.Controllers
 
             var fi = db.PersonFiles.SingleOrDefault(p => p.FileID == id);
 
-            if(fileName != null)
+            if (fileName != null)
             {
-                if (fi.AdharCardPDF == fileName)
+                if (fileName.EndsWith(".jpg"))
                 {
-                    ViewBag.FilP = fi.AdharCardPDF;
+                    if (fi.AdharCardPDF == fileName)
+                    {
+                        ViewBag.Filimg = fi.AdharCardPDF;
+                    }
+                    else if (fi.PanCard == fileName)
+                    {
+                        ViewBag.Filimg = fi.PanCard;
+                    }
+                    else if (fi.VoterCard == fileName)
+                    {
+                        ViewBag.Filimg = fi.VoterCard;
+                    }
                 }
-                else if(fi.PanCard == fileName)
+
+                else if(fileName.EndsWith(".pdf"))
                 {
-                    ViewBag.FilP = fi.PanCard;
-                }
-                else if (fi.VoterCard == fileName)
-                {
-                    ViewBag.FilP = fi.VoterCard;
+                    if (fi.AdharCardPDF == fileName)
+                    {
+                        ViewBag.Filpdf = fi.AdharCardPDF;
+                    }
+                    else if (fi.PanCard == fileName)
+                    {
+                        ViewBag.Filpdf = fi.PanCard;
+                    }
+                    else if (fi.VoterCard == fileName)
+                    {
+                        ViewBag.Filpdf = fi.VoterCard;
+                    }
                 }
             }
-
+    
             List<SelectListItem> DropDownFiles = new List<SelectListItem>()
             {
             new SelectListItem{ Text= "Adhar",Value = fi.AdharCardPDF},
@@ -136,10 +155,6 @@ namespace DynamicFolderNFileUploads.Controllers
 
             return View();
         }      
-
-        //public ActionResult EachFile(int id,string fileName)
-        //{
-
-        //}
+        
     }
 }

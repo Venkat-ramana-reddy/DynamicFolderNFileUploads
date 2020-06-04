@@ -25,68 +25,75 @@
 @if (Model != null)
 {
 
-<table border="1">
-    <tr>
-        <th>
-            @Html.LabelFor(m => m.Name)
-        </th>
-        <th>
-            @Html.LabelFor(m => m.AdharCardPDF)
-        </th>
-        <th>
-            @Html.LabelFor(m => m.PanCard)
-        </th>
-        <th>
-            @Html.LabelFor(m => m.VoterCard)
-        </th>
-    </tr>
+    <table border="1">
+        <tr>
+            <th>
+                @Html.LabelFor(m => m.Name)
+            </th>
+            <th>
+                @Html.LabelFor(m => m.AdharCardPDF)
+            </th>
+            <th>
+                @Html.LabelFor(m => m.PanCard)
+            </th>
+            <th>
+                @Html.LabelFor(m => m.VoterCard)
+            </th>
+        </tr>
 
-    <tr id="tableData">
-        <td>
-            @Html.DisplayFor(m => m.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(m => m.AdharCardPDF)
-        </td>
-        <td>
-            @Html.DisplayFor(m => m.PanCard)
-        </td>
-        <td>
-            @Html.DisplayFor(m => m.VoterCard)
-        </td>
-        <td>
-            @Html.DropDownList("EachFile", ViewBag.Files as SelectList, "Select File")
-            <input type="submit" value="Show"
-                   onclick="location.href='@Url.Action("EachFile", "FileUpload")?fileName='+$('#EachFile').val()+'&id='+@Model.FileID" />
-        </td>
-    </tr>
+        <tr id="tableData">
+            <td>
+                @Html.DisplayFor(m => m.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(m => m.AdharCardPDF)
+            </td>
+            <td>
+                @Html.DisplayFor(m => m.PanCard)
+            </td>
+            <td>
+                @Html.DisplayFor(m => m.VoterCard)
+            </td>
+            <td>
+                @Html.DropDownList("EachFile", ViewBag.Files as SelectList, "Select File")
+                <input type="submit" value="Show"
+                       onclick="location.href='@Url.Action("EachFile", "FileUpload")?fileName='+$('#EachFile').val()+'&id='+@Model.FileID" />
+            </td>
+        </tr>
 
-    @*<tr>
-        <td></td>
-        <td>
-            <div>
-                <img src="@Url.Content("~")images/@Model.AdharCardPDF" alt="@Model.Name adhar" width="200" height="120" />
-            </div>
-        </td>
-        <td>
-            <div>
-                <img src="@Url.Content("~")images/@Model.PanCard" alt="@Model.Name PanCard" width="200" height="120" />
-            </div>
-        </td>
-        <td>
-            <div>
-                <img src="@Url.Content("~")images/@Model.VoterCard" alt="@Model.Name VoterCard" width="200" height="120" />
-            </div>
-        </td>
+        @*<tr>
+                <td></td>
+                <td>
+                    <div>
+                        <img src="@Url.Content("~")images/@Model.AdharCardPDF" alt="@Model.Name adhar" width="200" height="120" />
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <img src="@Url.Content("~")images/@Model.PanCard" alt="@Model.Name PanCard" width="200" height="120" />
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <img src="@Url.Content("~")images/@Model.VoterCard" alt="@Model.Name VoterCard" width="200" height="120" />
+                    </div>
+                </td>
 
-    </tr>*@
-</table>
+            </tr>*@
+    </table>
 
-    if (ViewBag.FilP != null)
+    if (ViewBag.Filimg != null)
     {
-<div>
-    <img src="@Url.Content("~")images/@ViewBag.FilP" alt="file" width="200" height="120" />
-</div>
+
+        <div>
+            <img src="@Url.Content("~")images/@ViewBag.Filimg" alt="file" width="200" height="120" />
+        </div>
+    }
+    else if (ViewBag.Filpdf != null)
+    {
+        <div>
+            <embed src="@Url.Content("~")images/@ViewBag.Filpdf" width="800" height="1000" type="application/pdf">
+        </div>
     }
 }
 
